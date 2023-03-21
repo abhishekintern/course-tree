@@ -1,4 +1,4 @@
-import "./data.js";
+import data from "./data";
 
 let tree;
 const groupHierarchy = (parent, children, key) => {
@@ -27,3 +27,5 @@ delete data.topics;
 if (hasTopics) chapters = groupHierarchy(chapters, topics, "chapterId");
 if (hasChapters) subjects = groupHierarchy(subjects, chapters, "subjectId");
 if (hasSubjects) tree = groupHierarchy(terms, subjects, "termId");
+
+export default tree;

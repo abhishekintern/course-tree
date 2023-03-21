@@ -45,7 +45,7 @@ const Subject = ({ subject }) => {
           {/* CHAPTERS MAP FUNCTION */}
 
           {subject.children.map((chapter) => {
-            console.log(chapter);
+            // console.log(chapter);
             return <Chapter key={chapter._id} {...{ chapter }} />;
           })}
         </div>

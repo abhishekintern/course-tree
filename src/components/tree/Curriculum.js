@@ -339,9 +339,17 @@ const Curriculum = () => {
 
     // console.log("Chapters ",chapters);
     // console.log("Subjects ",subjects);
-    // console.log("Tree ", tree);
-  }, [setTree]);
+    recursion(groupHierarchy(terms, subjects, "termId"));
+  }, []);
 
+  const recursion = (tree) => {
+    tree.map((children, index, array) => {
+      console.log(index, children);
+      return recursion(children.children);
+    });
+  };
+
+  // console.log("Tree ", tree);
   return (
     <div className="bg-white w-[300px] min-w-[300px] h-screen overflow-y-scroll pb-8 p-2 text-black text-xs scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <h1 className="text-sm font-semibold text-gray-500 mb-3 ml-2">
@@ -353,7 +361,6 @@ const Curriculum = () => {
       </h2>
       <div className="relative">
         <span className="inset-x-[22px] -inset-y-2.5 absolute w-[2px] h-full bg-pink-300"></span>
-
         {tree.map((term) => {
           // console.log(term);
           return (
