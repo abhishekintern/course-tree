@@ -5,7 +5,7 @@ import Topic from "./Topic";
 const Chapter = ({ chapter }) => {
   const [toggleTopicArrow, setToggleTopicArrow] = useState(false);
   return (
-    <div className="pl-4 py-2 flex flex-col border-l-2 border-violet-400 relative">
+    <div className="pl-4 py-1.5 flex flex-col border-l-2 border-violet-400 relative">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <span className="absolute inset-x-0 inset-y-5 w-[16px] h-[2px] bg-violet-400"></span>
