@@ -343,8 +343,9 @@ const Curriculum = () => {
 
   return (
     <div className="bg-slate-100 w-[300px] min-w-[300px] h-screen overflow-y-scroll pb-8 p-2 text-black text-sm scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300 scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-      <h1 className="text-base font-semibold text-gray-500">CURRICULUM</h1>
+      <h1 className="text-lg font-semibold text-gray-500 mb-3 ml-2">CURRICULUM</h1>
       {/* TERMS MAP FUNCTION */}
+      <h2 className="font-semibold text-sm ml-2 mb-2">Bachelors of Technology</h2>
       {tree.map((term) => {
         // console.log(term);
         return (
