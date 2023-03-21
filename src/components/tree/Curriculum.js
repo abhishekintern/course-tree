@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Subject from "./Subject";
 import ToggleArrow from "./ToggleArrow";
@@ -350,43 +351,56 @@ const Curriculum = () => {
       <h2 className="font-semibold text-sm ml-2 mb-2">
         Bachelors of Technology
       </h2>
-      {tree.map((term) => {
-        // console.log(term);
-        return (
-          <div key={term._id} className="pl-2">
-            <div className="py-1 flex justify-between items-center relative">
-              <div className="flex items-center group">
-                {/* TERM SVG PHOTO-------------------------- */}
-                <span className="inset-x-3.5 -inset-y-2 absolute w-[2px] h-[12px] z-0 bg-pink-400"></span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="#F472B6"
-                  className="w-8 h-8 p-1.5 bg-pink-100 rounded-full z-10"
-                >
-                  <path d="M6 12a.75.75 0 01-.75-.75v-7.5a.75.75 0 111.5 0v7.5A.75.75 0 016 12zM18 12a.75.75 0 01-.75-.75v-7.5a.75.75 0 011.5 0v7.5A.75.75 0 0118 12zM6.75 20.25v-1.5a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0zM18.75 18.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 011.5 0zM12.75 5.25v-1.5a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0zM12 21a.75.75 0 01-.75-.75v-7.5a.75.75 0 011.5 0v7.5A.75.75 0 0112 21zM3.75 15a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0zM12 11.25a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5zM15.75 15a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0z" />
-                </svg>
-                <span className="mx-4 font-semibold text-xs">{term.title}</span>
-                <span className="inset-x-3.5 inset-y-9 absolute w-[2px] h-[12px] z-0 bg-pink-400"></span>
+      <div className="relative">
+        <span className="inset-x-[22px] -inset-y-2.5 absolute w-[2px] h-full bg-pink-300"></span>
+
+        {tree.map((term) => {
+          // console.log(term);
+          return (
+            <div key={term._id} className="pl-2 h-fit">
+              <div
+                onClick={() => setToggleArrow(!toggleArrow)}
+                className="py-1 flex justify-between items-center relative h-full hover:text-gray-700 rounded transition-all cursor-pointer"
+              >
+                <div className="flex items-center h-full">
+                  {/* <span className="inset-x-3.5 -inset-y-2 absolute w-[2px] h-[12px] z-0 bg-pink-400"></span> */}
+                  {/* TERM SVG PHOTO-------------------------- */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="#F472B6"
+                    className="w-8 h-8 p-1.5 bg-pink-100 rounded-full z-10"
+                  >
+                    <path d="M6 12a.75.75 0 01-.75-.75v-7.5a.75.75 0 111.5 0v7.5A.75.75 0 016 12zM18 12a.75.75 0 01-.75-.75v-7.5a.75.75 0 011.5 0v7.5A.75.75 0 0118 12zM6.75 20.25v-1.5a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0zM18.75 18.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 011.5 0zM12.75 5.25v-1.5a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0zM12 21a.75.75 0 01-.75-.75v-7.5a.75.75 0 011.5 0v7.5A.75.75 0 0112 21zM3.75 15a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0zM12 11.25a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5zM15.75 15a2.25 2.25 0 104.5 0 2.25 2.25 0 00-4.5 0z" />
+                  </svg>
+                  <Link href={"/"} className="mx-4 font-semibold text-xs">
+                    {term.title}
+                  </Link>
+                  {/* <span className="inset-x-3.5 inset-y-9 absolute w-[2px] h-[12px] z-0 bg-pink-400"></span> */}
+                  {/* {term.children.length >= 1 && (
+                  <span className="inset-x-3.5 z-50 absolute w-[2px] h-full bg-yellow-400"></span>
+                )} */}
+                </div>
+                {/* ARROW ICON SVG -------------------------- */}
+                {term.children.length >= 1 && (
+                  <ToggleArrow {...{ toggleArrow, setToggleArrow }} />
+                )}
               </div>
-              {/* ARROW ICON SVG -------------------------- */}
-              {term.children.length >= 1 && (
-                <ToggleArrow {...{ toggleArrow, setToggleArrow }} />
+              {toggleArrow && term.children.length >= 1 && (
+                <div className="pl-3.5 my-2 font-medium relative">
+                  {/* SUBJECTS MAP FUNCTION */}
+                  <span className="-inset-y-[15px] inset-x-3.5 absolute h-full w-[2px] bg-pink-300"></span>
+
+                  {term.children.map((subject) => {
+                    // console.log(subject);
+                    return <Subject key={subject._id} {...{ subject }} />;
+                  })}
+                </div>
               )}
             </div>
-            {toggleArrow && term.children.length >= 1 && (
-              <div className="pl-3.5 my-2 font-medium">
-                {/* SUBJECTS MAP FUNCTION */}
-
-                {term.children.map((subject) => {
-                  // console.log(subject);
-                  return <Subject key={subject._id} {...{ subject }} />;
-                })}
-              </div>
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };

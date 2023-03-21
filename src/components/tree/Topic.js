@@ -1,10 +1,11 @@
+import Link from "next/link";
 import React from "react";
 
 const Topic = ({ topic }) => {
   return (
-    <div className="font-normal border-l-2 border-cyan-400 py-1 px-3 relative">
-      <div className="flex items-center">
-        <span className="absolute inset-x-0 w-[12px] h-[2px] bg-cyan-400"></span>
+    <div className="font-normal py-1 px-3 relative">
+      <div className="flex items-center hover:text-gray-700 rounded transition-all">
+        <span className="absolute inset-x-0 w-[12px] h-[2px] bg-cyan-300"></span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -20,7 +21,9 @@ const Topic = ({ topic }) => {
           />
         </svg>
 
-        <span className="ml-2">{topic.title}</span>
+        <Link href={"/"} className="ml-2">
+          {topic.title}
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
 import Chapter from "./Chapter";
 import ToggleArrow from "./ToggleArrow";
 
@@ -6,15 +7,15 @@ const Subject = ({ subject }) => {
   const [toggleChildrenArrow, setToggleChildrenArrow] = useState(false);
 
   return (
-    <div className="pl-2.5 border-l-2 border-pink-400">
-      <div className="flex items-center justify-between">
+    <div className="pl-2.5">
+      <div onClick={() => setToggleChildrenArrow(!toggleChildrenArrow)} className="flex items-center justify-between hover:text-gray-700 rounded transition-all cursor-pointer">
         <div className="flex items-center relative">
-          <span className="-inset-x-3 absolute w-[12px] h-[2px] bg-pink-400"></span>
+          <span className="-inset-x-2 absolute w-[10px] h-[2px] bg-pink-300"></span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="#A78BFA"
-            className="w-6 h-6 p-1.5 bg-violet-100 rounded-full"
+            className="w-6 h-6 p-1.5 bg-violet-100 rounded-full z-10"
           >
             <path
               fillRule="evenodd"
@@ -23,10 +24,12 @@ const Subject = ({ subject }) => {
             />
             <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
           </svg>
-          {subject.children.length >= 1 && toggleChildrenArrow && (
+          {/* {subject.children.length >= 1 && toggleChildrenArrow && (
             <span className="inset-x-2.5 inset-y-[30px] absolute w-[2px] h-[10px] bg-violet-400"></span>
-          )}
-          <span className="m-2">{subject.title}</span>
+          )} */}
+          <Link href={"/"} className="m-2">
+            {subject.title}
+          </Link>
         </div>
         {/* ARROW ICON SVG -------------------------- */}
         {subject.children.length >= 1 && (
@@ -37,7 +40,8 @@ const Subject = ({ subject }) => {
         )}
       </div>
       {toggleChildrenArrow && (
-        <div className="pl-2.5">
+        <div className="pl-2.5 relative">
+          <span className="absolute -inset-y-[18px] bg-violet-300 w-[2px] h-full"></span>
           {/* CHAPTERS MAP FUNCTION */}
 
           {subject.children.map((chapter) => {
