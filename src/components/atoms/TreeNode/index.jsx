@@ -67,10 +67,10 @@ function TreeNode({ node }) {
 					className="flex items-center space-x-2 cursor-pointer text-slate-700 hover:text-slate-900 transition duration-300 p-2 relative z-30"
 					onMouseEnter={toggleChildHover}
 					onMouseLeave={toggleChildHover}
+					onClick={toggleOpen}
 				>
 					<span
 						className="flex-shrink-0 relative z-20 rounded-full overflow-hidden transition duration-300"
-						onClick={toggleOpen}
 					>
 						<Icon
 							className={classNames(
@@ -102,16 +102,15 @@ function TreeNode({ node }) {
 					{color !== preColor ? (
 						<span
 							className={classNames(
-								`absolute h-0.5 w-4 top-1/2 -left-[19px] translate-x-1/2 z-0 transition duration-300`,
-								isParentHovered
-									? `bg-${color}-400`
-									: `bg-${color}-200`
+								`absolute h-0.5 w-4 top-1/2 -left-[19px] translate-x-1/2 z-0 transition duration-300`, isParentHovered
+								? `bg-${color}-400`
+								: `bg-${color}-200`
 							)}
 						/>
 					) : null}
 					<Link
 						href="#"
-						className="text-xs leading-4 font-medium whitespace-nowrap"
+						className={`text-xs leading-4 font-medium whitespace-nowrap ${node.children?.length >= 1 ? "font-bold" : ""}`}
 					>
 						{node.title}
 					</Link>
