@@ -340,6 +340,7 @@ const Curriculum = () => {
     // console.log("Chapters ",chapters);
     // console.log("Subjects ",subjects);
     recursion(groupHierarchy(terms, subjects, "termId"));
+    // eslint-disable-next-line
   }, []);
 
   const recursion = (tree) => {
