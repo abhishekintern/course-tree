@@ -26,18 +26,16 @@ const PPT = () => {
               file:text-sm file:font-semibold
               file:bg-violet-50 file:text-violet-700
               hover:file:bg-violet-100"
-              accept=".pdf"
               onChange={handlePDFChange}
             />
           </div>
         </div>
 
-        <div className="flex justify-center h-2/3 items-center bg-slate-200">
+        <div className="flex justify-center h-screen items-center bg-slate-200">
           {fileUrl && (
-            <DocViewer
-              className="max-w-xl border-2 border-black rounded"
-              pluginRenderers={DocViewerRenderers}
-              documents={[{ uri: fileUrl }]}
+            <iframe
+              className="h-screen w-full border-2 border-black rounded"
+              src={fileUrl}
             />
           )}
         </div>
