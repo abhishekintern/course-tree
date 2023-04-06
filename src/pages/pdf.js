@@ -26,18 +26,41 @@ const PPT = () => {
               file:text-sm file:font-semibold
               file:bg-violet-50 file:text-violet-700
               hover:file:bg-violet-100"
+              accept=".pdf"
               onChange={handlePDFChange}
             />
           </div>
         </div>
 
-        <div className="flex justify-center h-screen items-center bg-slate-200">
-          {fileUrl && (
+        <div className="flex">
+          <div className="flex w-1/2">
             <iframe
-              className="h-screen w-full border-2 border-black rounded"
               src={fileUrl}
-            />
-          )}
+              className="border-2 border-red-200 rounded w-full"
+              frameborder="0"
+            ></iframe>
+          </div>
+          <div className="flex w-1/2 justify-center items-center bg-slate-200">
+            {fileUrl && (
+              <DocViewer
+                config={{
+                  pdfVerticalScrollByDefault: true, // false as default
+                }}
+                className="border-2 border-black rounded"
+                pluginRenderers={DocViewerRenderers}
+                documents={[{ uri: fileUrl }]}
+                theme={{
+                  primary: "#5296d8",
+                  secondary: "#ffffff",
+                  tertiary: "#5296d899",
+                  textPrimary: "#ffffff",
+                  textSecondary: "#5296d8",
+                  textTertiary: "#00000099",
+                  disableThemeScrollbar: false,
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
     </>
