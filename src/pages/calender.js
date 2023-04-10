@@ -71,11 +71,17 @@ const Home = () => {
     else setFirstDayOfWeek(startOfWeek(firstDayOfNext));
   };
 
+  const goToToday = () => {
+    const today = startOfToday();
+    setCurrMonth(format(today, "MMM-yyyy"));
+    setFirstDayOfWeek(startOfWeek(today));
+  };
+
   return (
     <>
       <div
         className={classNames(
-          "w-screen flex flex-col items-center justify-center p-3 select-none overflow-hidden",
+          "w-screen flex flex-col items-center justify-center py-3 select-none overflow-hidden",
           type.value === "month" ? "h-screen" : ""
         )}
       >
@@ -151,6 +157,7 @@ const Home = () => {
               </button>
               <button
                 type="button"
+                onClick={goToToday}
                 className="hidden px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 md:block"
               >
                 Today

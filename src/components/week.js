@@ -26,7 +26,7 @@ const Week = ({ days }) => {
             <div
               key={d}
               className={classNames(
-                "w-full h-fit py-2 flex-1 flex justify-center border hover:bg-neutral-100",
+                "h-fit py-2 flex-1 flex justify-center border hover:bg-neutral-100",
                 isToday(d) ? "bg-gray-100" : ""
               )}
               onClick={() => alert(format(d, "dd-MM-yyyy"))}
@@ -64,7 +64,7 @@ const Week = ({ days }) => {
                 )}
               >
                 <div className="flex w-16 items-center justify-center border hover:bg-neutral-100">
-                  <div className="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">
+                  <div className="flex justify-center items-center text-slate-900">
                     {time}
                   </div>
                 </div>
