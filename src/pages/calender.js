@@ -72,7 +72,6 @@ const Home = () => {
   };
 
   const goToToday = () => {
-    const today = startOfToday();
     setCurrMonth(format(today, "MMM-yyyy"));
     setFirstDayOfWeek(startOfWeek(today));
   };
