@@ -12,7 +12,7 @@ const CalendarGPT = ({ days, firstDay }) => {
   // console.log(formattedTime);
 
   return (
-    <div className="grid grid-cols-8 w-full bg-white">
+    <div className="grid grid-cols-8 w-full bg-white border-r">
       {/* Header */}
       <div className="border" />
       {days.map((day) => {
@@ -44,7 +44,7 @@ const CalendarGPT = ({ days, firstDay }) => {
           return (
             <div
               key={i}
-              className="h-28 flex items-start justify-center pr-2 border-b ttext-xs leading-5 text-gray-400"
+              className="h-28 flex items-start justify-center pr-2 border-b border-r text-xs leading-5 text-gray-400"
             >
               {i % 12 === 0 ? 12 : i % 12}:00 {i < 12 ? "AM" : "PM"}
             </div>
