@@ -1,21 +1,5 @@
-import Head from "next/head";
-import Image from "next/image";
-import {
-  add,
-  eachDayOfInterval,
-  endOfMonth,
-  endOfWeek,
-  format,
-  getDay,
-  isSameMonth,
-  isToday,
-  parse,
-  startOfToday,
-  startOfWeek,
-} from "date-fns";
-import { useState } from "react";
+import { format, isSameMonth, isToday } from "date-fns";
 import { twMerge } from "tailwind-merge";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 
 const classNames = (...classes) => twMerge(classes.filter(Boolean).join(" "));
 
@@ -23,11 +7,14 @@ const dayNames = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 const Month = ({ days, firstDay }) => {
   return (
     <>
-      <div className="w-full grid grid-cols-7 gap-px border border-gray-300 bg-gray-200 text-center text-xs font-bold leading-6 text-gray-700 lg:flex-none">
+      <div className="w-full grid grid-cols-7 bg-white border rounded-t-md overflow-hidden">
         {dayNames.map((day, idx) => {
           return (
-            <div key={day} className="bg-white py-2">
-              <div className="capitalize">{day}</div>
+            <div
+              key={day}
+              className="py-4 flex justify-center items-center border"
+            >
+              <div className="font-semibold capitalize">{day}</div>
             </div>
           );
         })}
@@ -37,15 +24,15 @@ const Month = ({ days, firstDay }) => {
           <div
             key={d}
             className={classNames(
-              "flex flex-col bg-white px-3 py-2 text-indigo-600 hover:bg-gray-100 focus:z-10 border",
-              !isSameMonth(d, firstDay) ? "bg-gray-100" : ""
+              "w-full flex justify-center border hover:bg-neutral-100",
+              !isSameMonth(d, firstDay) ? "bg-gray-50" : "bg-white"
             )}
             onClick={() => alert(format(d, "dd-MM-yyyy"))}
           >
             <div
               className={classNames(
-                "ml-auto sm:ml-0 w-6 h-6 flex justify-center items-center rounded-full text-slate-900",
-                isToday(d) ? "bg-indigo-500 text-white font-semibold" : "",
+                "h-8 w-8 flex justify-center items-center rounded-full text-slate-900",
+                isToday(d) ? "bg-indigo-500 text-white" : "",
                 !isSameMonth(d, firstDay) ? "text-slate-500" : ""
               )}
             >
