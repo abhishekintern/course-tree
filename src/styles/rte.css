@@ -1,6 +1,7 @@
 /* Basic editor styles */
-.ProseMirror > * + * {
-  margin-top: 0.75em;
+.ProseMirror * {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .ProseMirror ul,
 .ProseMirror ol {
@@ -43,4 +44,36 @@
   border: none;
   border-top: 2px solid rgba(13, 13, 13, 0.1);
   margin: 2rem 0;
+}
+.ProseMirror a {
+  color: green;
+  cursor: pointer;
+}
+
+.ProseMirror code {
+  background-color: rgba(#616161, 0.1);
+  border-radius: 0.25em;
+  box-decoration-break: clone;
+  color: #616161;
+  font-size: 0.9rem;
+  padding: 0.25em;
+}
+
+ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+}
+ul[data-type="taskList"] p {
+  margin: 0;
+}
+ul[data-type="taskList"] li {
+  display: flex;
+}
+ul[data-type="taskList"] li > label {
+  flex: 0 0 auto;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+ul[data-type="taskList"] li > div {
+  flex: 1 1 auto;
 }

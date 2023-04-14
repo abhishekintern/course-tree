@@ -33,11 +33,35 @@ const files = {
 };
 
 const JSONTOEXCEL = () => {
+  const jsonData = files.topics;
+
+  const downloadCsv = () => {
+    if (!jsonData) return;
+
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      Object.keys(jsonData[0]).join(",") +
+      "\n" +
+      jsonData.map((row) => Object.values(row).join(",")).join("\n");
+    // console.log(jsonData.map((row) => Object.values(row).join(",")).join("\n"));
+    // console.log(csvContent);
+
+    const link = document.createElement("a");
+    link.href = encodeURI(csvContent);
+    link.download = "topic.csv";
+    link.click();
+  };
+
   return (
     <div>
       JSONTOEXCEL
       <button className="bg-red-200" onClick={() => generateXLSX(files.topics)}>
         DOWNLOAD
+      </button>
+      <hr />
+      <h1>WITHOUT USING MODULES</h1>
+      <button className="bg-green-200" onClick={downloadCsv}>
+        WITHOUT MODULE{" "}
       </button>
     </div>
   );
