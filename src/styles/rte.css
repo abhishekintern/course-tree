@@ -16,8 +16,13 @@
   line-height: 1.1;
 }
 .ProseMirror code {
+  display: inline-flex;
   background-color: rgba(97, 97, 97, 0.1);
   color: #616161;
+}
+.ProseMirror code::before,
+.ProseMirror code::after {
+  content: "";
 }
 .ProseMirror pre {
   background: #0d0d0d;
