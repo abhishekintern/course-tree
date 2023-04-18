@@ -150,7 +150,7 @@ export const EditorText = () => {
       const json = editor.getJSON();
       const html = editor.getHTML();
       // console.log(html);
-      setContentPara(html);
+      // setContentPara(html);
       // send the content to an API here
     },
   });
@@ -164,7 +164,7 @@ export const EditorText = () => {
       {editor && (
         <BubbleMenu
           className="flex border bg-gradient-to-t from-neutral-50 to-neutral-200 dark:bg-neutral-800 text-slate-500 dark:text-slate-100 p-1 rounded-md divide-x-2 absolute"
-          tippyOptions={{ duration: 100 }}
+          tippyOptions={{ duration: 100, placement: "bottom", offset: [-500, 0] }}
           editor={editor}
         >
           <div className="flex space-x-2 px-1 py-0.5">
@@ -184,7 +184,7 @@ export const EditorText = () => {
         </BubbleMenu>
       )}
 
-      <div className="w-1/2 relative">
+      <div className="relative bg-slate-100 border">
         <EditorContent editor={editor} />
       </div>
     </>
