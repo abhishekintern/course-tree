@@ -42,3 +42,10 @@
   background-color: rgba(97, 97, 97, 0.1);
   color: #616161;
 }
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

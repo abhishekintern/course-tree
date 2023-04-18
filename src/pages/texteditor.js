@@ -17,7 +17,7 @@ import TaskList from "@tiptap/extension-task-list";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
-
+import Placeholder from "@tiptap/extension-placeholder";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -127,6 +127,9 @@ export const EditorText = () => {
   const editor = useEditor({
     extensions: [
       StarterKit,
+      Placeholder.configure({
+        placeholder: "Write something …",
+      }),
       LinkExtension.configure({
         validate: (href) => /^https?:\/\//.test(href),
         HTMLAttributes: {
@@ -164,7 +167,11 @@ export const EditorText = () => {
       {editor && (
         <BubbleMenu
           className="flex border bg-gradient-to-t from-neutral-50 to-neutral-200 dark:bg-neutral-800 text-slate-500 dark:text-slate-100 p-1 rounded-md divide-x-2 absolute"
-          tippyOptions={{ duration: 100, placement: "bottom", offset: [-500, 0] }}
+          tippyOptions={{
+            duration: 100,
+            placement: "bottom",
+            offset: [-500, 0],
+          }}
           editor={editor}
         >
           <div className="flex space-x-2 px-1 py-0.5">
