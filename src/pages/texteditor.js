@@ -1,23 +1,30 @@
-import BlockQuote from "@/svgs/BlockQuote";
-import Bold from "@/svgs/Bold";
-import BulletList from "@/svgs/BulletList";
-import CodeBlock from "@/svgs/CodeBlock";
-import Heading from "@/svgs/Heading";
-import InlineCode from "@/svgs/InlineCode";
-import Italic from "@/svgs/Italic";
-import Links from "@/svgs/Links";
-import OrderedList from "@/svgs/OrderedList";
-import Paragraph from "@/svgs/Paragraph";
-import Strike from "@/svgs/Strike";
-import SubHeading from "@/svgs/SubHeading";
-import Tasks from "@/svgs/Tasks";
 import { Link as LinkExtension } from "@tiptap/extension-link";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
-import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
+import {
+  BubbleMenu,
+  EditorContent,
+  useEditor,
+  FloatingMenu,
+} from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 import Placeholder from "@tiptap/extension-placeholder";
+import {
+  BlockQuote,
+  Bold,
+  BulletList,
+  CodeBlock,
+  Heading,
+  InlineCode,
+  Italic,
+  Links,
+  OrderedList,
+  Paragraph,
+  Strike,
+  SubHeading,
+  Tasks,
+} from "@/svgs/IconSvg";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -132,10 +139,6 @@ export const EditorText = () => {
       }),
       LinkExtension.configure({
         validate: (href) => /^https?:\/\//.test(href),
-        HTMLAttributes: {
-          rel: "noopener noreferrer",
-          target: null,
-        },
       }),
       TaskList,
       TaskItem.configure({
@@ -152,7 +155,6 @@ export const EditorText = () => {
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       const html = editor.getHTML();
-      // console.log(html);
       // setContentPara(html);
       // send the content to an API here
     },
@@ -189,6 +191,32 @@ export const EditorText = () => {
             ))}
           </div>
         </BubbleMenu>
+      )}
+      {editor && (
+        <FloatingMenu
+          className="flex border bg-gradient-to-t from-neutral-50 to-neutral-200 dark:bg-neutral-800 text-slate-500 dark:text-slate-100 p-1 rounded-md divide-x-2 absolute"
+          tippyOptions={{
+            duration: 100,
+            placement: "bottom",
+            offset: [-500, 0],
+          }}
+          editor={editor}
+        >
+          <div className="flex space-x-2 px-1 py-0.5">
+            {featuresList.map((feature, i) => (
+              <button
+                key={i}
+                title={feature.title}
+                onClick={feature.onClick ? feature.onClick : feature.function}
+                className={classNames(
+                  "text-sm font-medium px-1 p-2 hover:text-slate-800 active:text-slate-800"
+                )}
+              >
+                <feature.component />
+              </button>
+            ))}
+          </div>
+        </FloatingMenu>
       )}
 
       <div className="relative bg-slate-100 border">
