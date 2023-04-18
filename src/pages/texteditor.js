@@ -16,11 +16,14 @@ import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { useState } from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
 export const EditorText = () => {
+  const [contentPara, setContentPara] = useState("<p>Hola</p>");
   const toggleLinkHref = () => {
     // console.log(editor.getAttributes("link"));
     if (editor.getAttributes("link").href) {
@@ -38,6 +41,7 @@ export const EditorText = () => {
       return;
     }
   };
+
   const featuresList = [
     {
       title: "Heading",
@@ -141,14 +145,14 @@ export const EditorText = () => {
           "prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none items-center",
       },
     },
-    content: `
-      <h2>
-        Try to select <em>this text</em> to see what we call the bubble menu.
-      </h2>
-      <h3>
-        Neat, isn&apos;t it? Add an empty paragraph to see the floating menu.
-      </h3>
-    `,
+    content: `${contentPara}`,
+    onUpdate: ({ editor }) => {
+      const json = editor.getJSON();
+      const html = editor.getHTML();
+      // console.log(html);
+      setContentPara(html);
+      // send the content to an API here
+    },
   });
 
   if (!editor) {
@@ -170,8 +174,7 @@ export const EditorText = () => {
                 title={feature.title}
                 onClick={feature.onClick ? feature.onClick : feature.function}
                 className={classNames(
-                  "text-sm font-medium px-1 p-2 hover:text-slate-800 active:text-slate-800",
-                  editor.isActive(feature.isActive) ? "is-active" : ""
+                  "text-sm font-medium px-1 p-2 hover:text-slate-800 active:text-slate-800"
                 )}
               >
                 <feature.component />
